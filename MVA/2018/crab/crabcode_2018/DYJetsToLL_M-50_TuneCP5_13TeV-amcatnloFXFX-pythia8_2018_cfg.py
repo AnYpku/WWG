@@ -25,7 +25,7 @@ config.Data.unitsPerJob = 1
 config.Data.publication = False
 config.Data.ignoreLocality = True
 config.Data.allowNonValidInputDataset = True
-config.Data.outputDatasetTag = "DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8_2018" 
+config.Data.outputDatasetTag = "DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8_2018_mva" 
 
 config.section_("Site")
 config.Site.storageSite = "T3_CH_CERNBOX"

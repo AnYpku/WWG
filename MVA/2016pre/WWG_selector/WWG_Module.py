@@ -34,6 +34,10 @@ class WWG_Producer(Module):
         self.out.branch("lep2eta",  "F")
         self.out.branch("lep1phi",  "F")
         self.out.branch("lep2phi",  "F")
+        self.out.branch("lep1_mvaTTH",  "F")
+        self.out.branch("lep2_mvaTTH",  "F")
+        self.out.branch("lep1_miniISO",  "F")
+        self.out.branch("lep2_miniISO",  "F")
         self.out.branch("drll",  "F")
         self.out.branch("lep1_charge", "I")
         self.out.branch("lep2_charge", "I")
@@ -70,24 +74,30 @@ class WWG_Producer(Module):
         self.out.branch("ntruepu",  "F");
         self.out.branch("MET_pass","I")
         self.out.branch("npvs","I")
-        self.out.branch("n_bjets_loose","I")
-        self.out.branch("n_bjets_medium","I")
-        self.out.branch("n_bjets20_loose","I")
-        self.out.branch("n_bjets20_medium","I")
-        self.out.branch("n_bjets_loose_tightId","I")
-        self.out.branch("n_bjets_medium_tightId","I")
-        self.out.branch("n_bjets20_loose_tightId","I")
-        self.out.branch("n_bjets20_medium_tightId","I")
+        self.out.branch("n_bjets_loose_deepcsv","I")
+        self.out.branch("n_bjets_loose_deepFlavB","I")
+        self.out.branch("n_bjets20_loose_deepcsv","I")
+        self.out.branch("n_bjets20_loose_deepFlavB","I")
+        self.out.branch("n_bjets_medium_deepcsv","I")
+        self.out.branch("n_bjets_medium_deepFlavB","I")
+        self.out.branch("n_bjets20_medium_deepcsv","I")
+        self.out.branch("n_bjets20_medium_deepFlavB","I")
         self.out.branch("njets50","I")
         self.out.branch("njets40","I")
         self.out.branch("njets30","I")
         self.out.branch("njets20","I")
-        self.out.branch("njets15","I")
-        self.out.branch("njets50_tightId","I")
-        self.out.branch("njets40_tightId","I")
-        self.out.branch("njets30_tightId","I")
-        self.out.branch("njets20_tightId","I")
-        self.out.branch("njets15_tightId","I")
+        self.out.branch("njets50_pc","I")
+        self.out.branch("njets40_pc","I")
+        self.out.branch("njets30_pc","I")
+        self.out.branch("njets20_pc","I")
+        self.out.branch("n_bjets_loose_deepcsv_pc","I")
+        self.out.branch("n_bjets_loose_deepFlavB_pc","I")
+        self.out.branch("n_bjets20_loose_deepcsv_pc","I")
+        self.out.branch("n_bjets20_loose_deepFlavB_pc","I")
+        self.out.branch("n_bjets_medium_deepcsv_pc","I")
+        self.out.branch("n_bjets_medium_deepFlavB_pc","I")
+        self.out.branch("n_bjets20_medium_deepcsv_pc","I")
+        self.out.branch("n_bjets20_medium_deepFlavB_pc","I")
 
     def endFile(self, inputFile, outputFile, inputTree, wrappedOutputTree):
 	pass
@@ -130,15 +140,15 @@ class WWG_Producer(Module):
                 continue
             if abs(muons[i].eta) > 2.4:
                 continue
-            if muons[i].tightId == True and muons[i].pfRelIso04_all < 0.15:
+            if muons[i].mediumId == True and muons[i].mvaTTH > -0.2 and muons[i].miniPFRelIso_all < 0.4:
                 tight_muons.append(i)
                 muons_select.append(i)
                 muon_pass += 1
-	    elif muons[i].tightId == True and muons[i].pfRelIso04_all < 0.25:
+	    elif muons[i].mediumId == True and muons[i].mvaTTH < -0.2 and muons[i].miniPFRelIso_all < 0.4:
                  loose_but_not_tight_muons.append(i)
                  muons_select.append(i)
                  muon_pass += 1
-            if muons[i].looseId == True and muons[i].pfRelIso04_all < 0.25:
+            if muons[i].looseId == True and muons[i].miniPFRelIso_all < 0.4:
                 loose_muon_pass += 1
 
         # selection on electrons
@@ -150,7 +160,7 @@ class WWG_Producer(Module):
             if abs(electrons[i].eta + electrons[i].deltaEtaSC) > 2.5:
                 continue
             if (abs(electrons[i].eta + electrons[i].deltaEtaSC) < 1.479 and abs(electrons[i].dz) < 0.1 and abs(electrons[i].dxy) < 0.05) or (abs(electrons[i].eta + electrons[i].deltaEtaSC) > 1.479 and abs(electrons[i].dz) < 0.2 and abs(electrons[i].dxy) < 0.1):
-                if electrons[i].cutBased >= 3:
+                if electrons[i].mvaFall17V2Iso_WP80==True:
                     tight_electrons.append(i)
 		    electrons_select.append(i)
                     electron_pass += 1
@@ -270,13 +280,13 @@ class WWG_Producer(Module):
         lep1_is_tight=-10
         lep2_is_tight=-10
         if len(muons_select)==1 and len(electrons_select)==1:  # emu channel 
-            if muons[muons_select[0]].tightId == True and muons[muons_select[0]].pfRelIso04_all < 0.15:
+            if muons[muons_select[0]].mediumId == True and muons[muons_select[0]].mvaTTH > -0.2 and muons[muons_select[0]].miniPFRelIso_all < 0.4:
                lep1_is_tight=1
-            if electrons[electrons_select[0]].cutBased >= 3:
+            if electrons[electrons_select[0]].mvaFall17V2Iso_WP80==True:
 	       lep2_is_tight=1
 #           print 'test emu channel',len(genparts)
             if hasattr(event, 'nGenPart'):
-                print 'calculate the lepton flag in channel emu'
+#                print 'calculate the lepton flag in channel emu'
                 for i in range(0,len(genparts)):
 		   if genparts[i].pt > 5 and abs(genparts[i].pdgId) == 13 and ((genparts[i].statusFlags & isprompt_mask == isprompt_mask) or (genparts[i].statusFlags & isprompttaudecayproduct == isprompttaudecayproduct)) and deltaR(muons[muons_select[0]].eta,muons[muons_select[0]].phi,genparts[i].eta,genparts[i].phi) < 0.3:
                        lepton1_isprompt=1
@@ -302,6 +312,10 @@ class WWG_Producer(Module):
             self.out.fillBranch("lep2pt",electrons[electrons_select[0]].pt)
             self.out.fillBranch("lep2eta",electrons[electrons_select[0]].eta)
             self.out.fillBranch("lep2phi",electrons[electrons_select[0]].phi)
+            self.out.fillBranch("lep1_miniISO",muons[muons_select[0]].miniPFRelIso_all)
+            self.out.fillBranch("lep2_miniISO",electrons[electrons_select[0]].miniPFRelIso_all)
+            self.out.fillBranch("lep1_mvaTTH",muons[muons_select[0]].mvaTTH)
+            self.out.fillBranch("lep2_mvaTTH",electrons[electrons_select[0]].mvaTTH)
             self.out.fillBranch("mll",(muons[muons_select[0]].p4() + electrons[electrons_select[0]].p4()).M())
             self.out.fillBranch("ptll",(muons[muons_select[0]].p4() + electrons[electrons_select[0]].p4()).Pt())
             mT = sqrt(2*(muons[muons_select[0]].p4() + electrons[electrons_select[0]].p4()).Pt()*event.MET_pt*(1 - cos((muons[muons_select[0]].p4()+electrons[electrons_select[0]].p4()).Phi()-event.MET_phi)))
@@ -320,9 +334,11 @@ class WWG_Producer(Module):
                   photon_index=photons_select[j] 
                   break
                else:
-                  photon_index=photons_select[0]
+                  photon_pass=0
+                  break
+        if photon_pass>0:
            if hasattr(photons[photon_index],'genPartIdx') :
-               print 'calculate the photon flag'
+#               print 'calculate the photon flag'
                if photons[photon_index].genPartIdx >= 0 and genparts[photons[photon_index].genPartIdx].pdgId  == 22: 
                    if ((genparts[photons[photon_index].genPartIdx].statusFlags & isprompt_mask == isprompt_mask) or (genparts[photons[photon_index].genPartIdx].statusFlags & isdirectprompttaudecayproduct_mask == isdirectprompttaudecayproduct_mask)) and (genparts[photons[photon_index].genPartIdx].statusFlags & isfromhardprocess_mask == isfromhardprocess_mask):
                        photon_gen_matching = 6
@@ -387,81 +403,103 @@ class WWG_Producer(Module):
         self.out.fillBranch("photon_isprompt",photon_isprompt)
 
         pass_dr_cut = True
+
         njets50 = 0
         njets40 = 0
         njets30 = 0
         njets20 = 0
-        njets15 = 0
-        njets50_tightId = 0
-        njets40_tightId = 0
-        njets30_tightId = 0
-        njets20_tightId = 0
-        njets15_tightId = 0
-        n_bjets_loose = 0
-        n_bjets_medium = 0
-        n_bjets20_loose = 0
-        n_bjets20_medium = 0
-        n_bjets_loose_tightId = 0
-        n_bjets_medium_tightId = 0
-        n_bjets20_loose_tightId = 0
-        n_bjets20_medium_tightId = 0
+        n_bjets_loose_deepcsv = 0
+        n_bjets_medium_deepcsv = 0
+        n_bjets20_loose_deepcsv = 0
+        n_bjets20_medium_deepcsv = 0
+        n_bjets_loose_deepFlavB = 0
+        n_bjets_medium_deepFlavB = 0
+        n_bjets20_loose_deepFlavB = 0
+        n_bjets20_medium_deepFlavB = 0
+
+        njets50_pc = 0
+        njets40_pc = 0
+        njets30_pc = 0
+        njets20_pc = 0
+        n_bjets_loose_deepcsv_pc = 0
+        n_bjets_medium_deepcsv_pc = 0
+        n_bjets20_loose_deepcsv_pc = 0
+        n_bjets20_medium_deepcsv_pc = 0
+        n_bjets_loose_deepFlavB_pc = 0
+        n_bjets_medium_deepFlavB_pc = 0
+        n_bjets20_loose_deepFlavB_pc = 0
+        n_bjets20_medium_deepFlavB_pc = 0
 
         for i in range(0,len(jets)):
             if abs(jets[i].eta) > 4.7:
                continue
             if photon_pass>0:
-	       pass_dr_cut = deltaR(jets[i].eta,jets[i].phi,photons[photon_index].eta,photons[photon_index].phi) > 0.5
-            if deltaR(jets[i].eta,jets[i].phi,electrons[electrons_select[0]].eta,electrons[electrons_select[0]].phi) < 0.5:
+	       pass_dr_cut = deltaR(jets[i].eta,jets[i].phi,photons[photon_index].eta,photons[photon_index].phi) > 0.4
+            if deltaR(jets[i].eta,jets[i].phi,electrons[electrons_select[0]].eta,electrons[electrons_select[0]].phi) < 0.4:
                    pass_dr_cut = False
-            if deltaR(jets[i].eta,jets[i].phi,muons[muons_select[0]].eta,muons[muons_select[0]].phi) < 0.5:
+            if deltaR(jets[i].eta,jets[i].phi,muons[muons_select[0]].eta,muons[muons_select[0]].phi) < 0.4:
                    pass_dr_cut = False
-
-            if  not pass_dr_cut == True:
-	        continue
-
-            if jets[i].btagDeepB > 0.6001:  # medium DeepCSVM, remove jets from b
-               n_bjets_medium +=1
-               if jets[i].pt > 20 :
-                  n_bjets20_medium +=1
-            if jets[i].btagDeepB > 0.2027:  # Loose DeepCSVM, remove jets from b
-               n_bjets_loose +=1
-               if jets[i].pt > 20:
-                  n_bjets20_loose +=1
-
-            if jets[i].pt > 50:
-                njets50+=1
-            if jets[i].pt > 40:
-                njets40+=1
-            if jets[i].pt > 30:
-                njets30+=1
-            if jets[i].pt > 20:
-                njets20+=1
-            if jets[i].pt > 15:
-                njets15+=1
 
             if jets[i].jetId >> 1 & 1:
-               jets_select.append(i)
 
-               if jets[i].btagDeepB > 0.4168:
-	          n_bjets_medium_tightId +=1
+               # DeepCSV
+               if jets[i].btagDeepB > 0.6001:
+	          n_bjets_medium_deepcsv +=1
                   if jets[i].pt > 20 :
-                     n_bjets20_medium_tightId +=1
-               if jets[i].btagDeepB > 0.1208 :
-	          n_bjets_loose_tightId +=1
+                     n_bjets20_medium_deepcsv +=1
+               if jets[i].btagDeepB > 0.2027:
+	          n_bjets_loose_deepcsv +=1
                   if jets[i].pt > 20 :
-                     n_bjets20_loose_tightId +=1
+                     n_bjets20_loose_deepcsv +=1
+
+               # DeepJet
+               if jets[i].btagDeepFlavB > 0.2598:
+	          n_bjets_medium_deepFlavB +=1
+                  if jets[i].pt > 20 :
+                     n_bjets20_medium_deepFlavB +=1
+               if jets[i].btagDeepFlavB > 0.0508 :
+	          n_bjets_loose_deepFlavB +=1
+                  if jets[i].pt > 20 :
+                     n_bjets20_loose_deepFlavB +=1
 
                if jets[i].pt > 50:
-                   njets50_tightId+=1
+                   njets50 +=1
                if jets[i].pt > 40:
-                   njets40_tightId+=1
+                   njets40 +=1
                if jets[i].pt > 30:
-                   njets30_tightId+=1
+                   njets30 +=1
                if jets[i].pt > 20:
-                   njets20_tightId+=1
-               if jets[i].pt > 15:
-                   njets15_tightId+=1
+                   njets20 +=1
 
+               if pass_dr_cut == True:
+                  # DeepCSV
+                  if jets[i].btagDeepB > 0.6001:
+	             n_bjets_medium_deepcsv_pc +=1
+                     if jets[i].pt > 20 :
+                        n_bjets20_medium_deepcsv_pc +=1
+                  if jets[i].btagDeepB > 0.2027:
+	             n_bjets_loose_deepcsv_pc +=1
+                     if jets[i].pt > 20 :
+                        n_bjets20_loose_deepcsv_pc +=1
+
+                  # DeepJet
+                  if jets[i].btagDeepFlavB > 0.2598:
+	             n_bjets_medium_deepFlavB_pc +=1
+                     if jets[i].pt > 20 :
+                        n_bjets20_medium_deepFlavB_pc +=1
+                  if jets[i].btagDeepFlavB > 0.0508:
+	             n_bjets_loose_deepFlavB_pc +=1
+                     if jets[i].pt > 20 :
+                        n_bjets20_loose_deepFlavB_pc +=1
+
+                  if jets[i].pt > 50:
+                      njets50_pc+=1
+                  if jets[i].pt > 40:
+                      njets40_pc +=1
+                  if jets[i].pt > 30:
+                      njets30_pc +=1
+                  if jets[i].pt > 20:
+                      njets20_pc +=1
 
         if hasattr(event,'Pileup_nPU'):    
             self.out.fillBranch("npu",event.Pileup_nPU)
@@ -473,27 +511,35 @@ class WWG_Producer(Module):
         else:
             self.out.fillBranch("ntruepu",0)
 
-        print 'channel',channel,', mu_pass:',muon_pass,', ele_pass:',electron_pass,', photon_pass:',photon_pass,', is lepton1 real ',lepton1_isprompt,', is lepton1 tight ',lep1_is_tight,', is lepton2 real ',lepton2_isprompt,', is lepton2 tight ',lep2_is_tight,', is photon real ',photon_isprompt,' or ',photon_gen_matching
-        print '------\n'
+#        print 'channel',channel,', mu_pass:',muon_pass,', ele_pass:',electron_pass,', photon_pass:',photon_pass,', is lepton1 real ',lepton1_isprompt,', is lepton1 tight ',lep1_is_tight,', is lepton2 real ',lepton2_isprompt,', is lepton2 tight ',lep2_is_tight,', is photon real ',photon_isprompt,' or ',photon_gen_matching
+#        print '------\n'
 
         self.out.fillBranch("njets50",njets50)
         self.out.fillBranch("njets40",njets40)
         self.out.fillBranch("njets30",njets30)
         self.out.fillBranch("njets20",njets20)
-        self.out.fillBranch("njets15",njets15)
-        self.out.fillBranch("njets50_tightId",njets50_tightId)
-        self.out.fillBranch("njets40_tightId",njets40_tightId)
-        self.out.fillBranch("njets30_tightId",njets30_tightId)
-        self.out.fillBranch("njets20_tightId",njets20_tightId)
-        self.out.fillBranch("njets15_tightId",njets15_tightId)
-        self.out.fillBranch("n_bjets_loose", n_bjets_loose)
-        self.out.fillBranch("n_bjets_medium",n_bjets_medium)
-        self.out.fillBranch("n_bjets_loose_tightId", n_bjets_loose_tightId)
-        self.out.fillBranch("n_bjets_medium_tightId",n_bjets_medium_tightId)
-        self.out.fillBranch("n_bjets20_loose", n_bjets20_loose)
-        self.out.fillBranch("n_bjets20_medium",n_bjets20_medium)
-        self.out.fillBranch("n_bjets20_loose_tightId", n_bjets20_loose_tightId)
-        self.out.fillBranch("n_bjets20_medium_tightId",n_bjets20_medium_tightId)
+        self.out.fillBranch("njets50_pc",njets50_pc)
+        self.out.fillBranch("njets40_pc",njets40_pc)
+        self.out.fillBranch("njets30_pc",njets30_pc)
+        self.out.fillBranch("njets20_pc",njets20_pc)
+        self.out.fillBranch("n_bjets_loose_deepcsv_pc",  n_bjets_loose_deepcsv_pc)
+        self.out.fillBranch("n_bjets_loose_deepFlavB_pc",n_bjets_loose_deepFlavB_pc)
+        self.out.fillBranch("n_bjets20_loose_deepcsv_pc",  n_bjets20_loose_deepcsv_pc)
+        self.out.fillBranch("n_bjets20_loose_deepFlavB_pc",n_bjets20_loose_deepFlavB_pc)
+        self.out.fillBranch("n_bjets_medium_deepcsv_pc",  n_bjets_medium_deepcsv_pc)
+        self.out.fillBranch("n_bjets_medium_deepFlavB_pc",n_bjets_medium_deepFlavB_pc)
+        self.out.fillBranch("n_bjets20_medium_deepcsv_pc",  n_bjets20_medium_deepcsv_pc)
+        self.out.fillBranch("n_bjets20_medium_deepFlavB_pc",n_bjets20_medium_deepFlavB_pc)
+
+        self.out.fillBranch("n_bjets_loose_deepcsv",  n_bjets_loose_deepcsv)
+        self.out.fillBranch("n_bjets_loose_deepFlavB",n_bjets_loose_deepFlavB)
+        self.out.fillBranch("n_bjets20_loose_deepcsv",  n_bjets20_loose_deepcsv)
+        self.out.fillBranch("n_bjets20_loose_deepFlavB",n_bjets20_loose_deepFlavB)
+        self.out.fillBranch("n_bjets_medium_deepcsv",  n_bjets_medium_deepcsv)
+        self.out.fillBranch("n_bjets_medium_deepFlavB",n_bjets_medium_deepFlavB)
+        self.out.fillBranch("n_bjets20_medium_deepcsv",  n_bjets20_medium_deepcsv)
+        self.out.fillBranch("n_bjets20_medium_deepFlavB",n_bjets20_medium_deepFlavB)
+
         self.out.fillBranch("npvs",event.PV_npvs)
         self.out.fillBranch("met",event.MET_pt)
         self.out.fillBranch("metup",sqrt(pow(event.MET_pt*cos(event.MET_phi) + event.MET_MetUnclustEnUpDeltaX,2) + pow(event.MET_pt*sin(event.MET_phi) + event.MET_MetUnclustEnUpDeltaY,2)))

@@ -83,7 +83,7 @@ Rp41
 (dp42
 S'inputDataset'
 p43
-S'/TTJets_TuneCP5_13TeV-amcatnloFXFX-pythia8/RunIISummer20UL16NanoAODv2-106X_mcRun2_asymptotic_v15-v1/NANOAODSIM'
+S'/TTJets_TuneCP5_13TeV-amcatnloFXFX-pythia8/RunIISummer20UL16NanoAODv9-106X_mcRun2_asymptotic_v17-v1/NANOAODSIM'
 p44
 sS'allowNonValidInputDataset'
 p45
@@ -272,7 +272,7 @@ S'prod'
 p115
 sS'RequestName'
 p116
-V220129_075455:yian_crab_TTJets_TuneCP5_13TeV-amcatnloFXFX-pythia8_2016
+V220331_114114:yian_crab_TTJets_TuneCP5_13TeV-amcatnloFXFX-pythia8_2016
 p117
 sS'voRole'
 p118

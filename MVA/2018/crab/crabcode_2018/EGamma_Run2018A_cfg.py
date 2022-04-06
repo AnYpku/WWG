@@ -21,13 +21,13 @@ config.Data.inputDBS = "global"
 # config.Data.splitting = "FileBased"
 # config.Data.unitsPerJob = 1
 config.Data.splitting = "LumiBased"
-config.Data.unitsPerJob = 50
+config.Data.unitsPerJob = 40
 config.Data.lumiMask = "/afs/cern.ch/cms/CAF/CMSCOMM/COMM_DQM/certification/Collisions18/13TeV/Legacy_2018/Cert_314472-325175_13TeV_Legacy2018_Collisions18_JSON.txt" 
 
 config.Data.publication = False
 config.Data.ignoreLocality = True
 config.Data.allowNonValidInputDataset = True
-config.Data.outputDatasetTag = "EGamma_Run2018A" 
+config.Data.outputDatasetTag = "EGamma_Run2018A_mva" 
 
 config.section_("Site")
 config.Site.storageSite = "T3_CH_CERNBOX"

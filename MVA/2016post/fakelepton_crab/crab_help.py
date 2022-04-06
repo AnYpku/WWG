@@ -15,7 +15,7 @@ def get_abbre(name,sample_type,year):
     elif sample_type == 'data':
         return name.split('/')[1] + '_' + name.split('/')[2].split('-')[0]
 
-def prepare_crab(name,sample_type,year):
+def prepare_crab(name,sample_type,year,era):
 
     abbre_name = get_abbre(name,sample_type,year) 
     if not os.path.exists('crabcode_' + year):
@@ -27,43 +27,48 @@ def prepare_crab(name,sample_type,year):
 
         f.write('config = Configuration()\n')
         f.write('config.section_("General")\n')
-        f.write('config.General.requestName = "' + abbre_name + '"\n')
+        f.write('config.General.requestName = "' + abbre_name + '_mva"\n')
         f.write('config.General.transferLogs = False \n')
         f.write('config.General.workArea = "crab' + year + '"\n\n')
 
         f.write('config.section_("JobType")\n')
         f.write('config.JobType.pluginName = "Analysis"\n')
         f.write('config.JobType.psetName = "PSet.py"\n')
+#        f.write('config.JobType.maxJobRuntimeMin = 2630\n')
         f.write('config.JobType.scriptExe = "./WWG_crab_script.sh" \n')
-        f.write('config.JobType.inputFiles = ["../../../scripts/haddnano.py","../WWG_fakelepton/WWG_postproc.py","../WWG_fakelepton/WWGfakelepton_Module.py","../WWG_fakelepton/WWG_keep_and_drop.txt","../WWG_fakelepton/WWG_output_branch.txt","../WWG_fakelepton/DAS_filesearch.py"] #hadd nano will not be needed once nano tools are in cmssw \n')
-        f.write('config.JobType.scriptArgs = ["isdata=' + sample_type + '","year=' + year + '"] \n')
+        f.write('config.JobType.inputFiles = ["../../../../scripts/haddnano.py","../WWG_selector/WWG_postproc.py","../WWG_selector/WWG_Module.py","../WWG_selector/WWG_keep_and_drop.txt","../WWG_selector/WWG_output_branch.txt","../WWG_selector/DAS_filesearch.py"] #hadd nano will not be needed once nano tools are in cmssw \n')
+#	f.write('config.JobType.scriptArgs = ["isdata=' + sample_type + '","year=' + year + '","era=' + era + '"] \n')
+        f.write('config.JobType.scriptArgs = ["isdata=' + sample_type + '","year=' + year + '","era=' + era + '"] \n')
         f.write('config.JobType.sendPythonFolder  = True\n')
         f.write('config.JobType.allowUndistributedCMSSW = True \n\n')
 
         f.write('config.section_("Data")\n')
         f.write('config.Data.inputDataset = "' + name + '" \n')
-        f.write('#config.Data.inputDBS = "phys03"\n')
         f.write('config.Data.inputDBS = "global"\n')
-        f.write('# config.Data.splitting = "LumiBased"\n')
-        f.write('config.Data.splitting = "FileBased"\n')
-        f.write('#config.Data.splitting = "EventAwareLumiBased" \n')
-        f.write('#config.Data.splitting = "Automatic" \n')
-        f.write('config.Data.unitsPerJob = 1\n')
+        f.write('# config.Data.splitting = "FileBased"\n')
+        f.write('# config.Data.unitsPerJob = 1\n')
 
         if sample_type == 'MC':
-            pass
+           f.write('config.Data.splitting = "FileBased"\n')
+           f.write('config.Data.unitsPerJob = 1\n')
         elif year == '2018':
+            f.write('config.Data.splitting = "LumiBased"\n')
+            f.write('config.Data.unitsPerJob = 40\n')
             f.write('config.Data.lumiMask = "/afs/cern.ch/cms/CAF/CMSCOMM/COMM_DQM/certification/Collisions18/13TeV/Legacy_2018/Cert_314472-325175_13TeV_Legacy2018_Collisions18_JSON.txt" \n\n')
         elif year == '2017':
+            f.write('config.Data.splitting = "LumiBased"\n')
+            f.write('config.Data.unitsPerJob = 40\n')
             f.write('config.Data.lumiMask = "/afs/cern.ch/cms/CAF/CMSCOMM/COMM_DQM/certification/Collisions17/13TeV/Legacy_2017/Cert_294927-306462_13TeV_UL2017_Collisions17_GoldenJSON.txt" \n\n')
         elif year == '2016':
+            f.write('config.Data.splitting = "LumiBased"\n')
+            f.write('config.Data.unitsPerJob = 40\n')
             f.write('config.Data.lumiMask = "/afs/cern.ch/cms/CAF/CMSCOMM/COMM_DQM/certification/Collisions16/13TeV/Legacy_2016/Cert_271036-284044_13TeV_Legacy2016_Collisions16_JSON.txt" \n\n')
 
 #        f.write('config.Data.outLFNDirBase ="/store/user/sdeng/WWG_analysis/' + sample_type + '/' + year + '"\n')
         f.write('config.Data.publication = False\n')
         f.write('config.Data.ignoreLocality = True\n')
         f.write('config.Data.allowNonValidInputDataset = True\n')
-        f.write('config.Data.outputDatasetTag = "' + abbre_name + '" \n\n')
+        f.write('config.Data.outputDatasetTag = "' + abbre_name + '_mva" \n\n')
 
         f.write('config.section_("Site")\n')
         f.write('config.Site.storageSite = "T3_CH_CERNBOX"\n')
@@ -175,7 +180,7 @@ if __name__=='__main__':
 
     if args.mode == 'prepare':
         for dataset in jsons:
-            prepare_crab(dataset['name'], dataset['type'], str(dataset['year']))
+            prepare_crab(dataset['name'], dataset['type'], str(dataset['year']), dataset['era'])
     
     if args.mode == 'submit':
         for dataset in jsons:

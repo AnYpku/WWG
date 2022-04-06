@@ -34,6 +34,8 @@ def prepare_crab(name,sample_type,year,era):
         f.write('config.section_("JobType")\n')
         f.write('config.JobType.pluginName = "Analysis"\n')
         f.write('config.JobType.psetName = "PSet.py"\n')
+#        f.write('config.JobType.maxMemoryMB = 3000\n')
+#        f.write('config.JobType.maxJobRuntimeMin = 2630\n')
         f.write('config.JobType.scriptExe = "./WWG_crab_script.sh" \n')
         f.write('config.JobType.inputFiles = ["../../../../scripts/haddnano.py","../WWG_selector/WWG_postproc.py","../WWG_selector/WWG_Module.py","../WWG_selector/WWG_keep_and_drop.txt","../WWG_selector/WWG_output_branch.txt","../WWG_selector/DAS_filesearch.py"] #hadd nano will not be needed once nano tools are in cmssw \n')
 #	f.write('config.JobType.scriptArgs = ["isdata=' + sample_type + '","year=' + year + '","era=' + era + '"] \n')
@@ -52,22 +54,22 @@ def prepare_crab(name,sample_type,year,era):
            f.write('config.Data.unitsPerJob = 1\n')
         elif year == '2018':
             f.write('config.Data.splitting = "LumiBased"\n')
-            f.write('config.Data.unitsPerJob = 50\n')
+            f.write('config.Data.unitsPerJob = 40\n')
             f.write('config.Data.lumiMask = "/afs/cern.ch/cms/CAF/CMSCOMM/COMM_DQM/certification/Collisions18/13TeV/Legacy_2018/Cert_314472-325175_13TeV_Legacy2018_Collisions18_JSON.txt" \n\n')
         elif year == '2017':
             f.write('config.Data.splitting = "LumiBased"\n')
-            f.write('config.Data.unitsPerJob = 50\n')
+            f.write('config.Data.unitsPerJob = 40\n')
             f.write('config.Data.lumiMask = "/afs/cern.ch/cms/CAF/CMSCOMM/COMM_DQM/certification/Collisions17/13TeV/Legacy_2017/Cert_294927-306462_13TeV_UL2017_Collisions17_GoldenJSON.txt" \n\n')
         elif year == '2016':
             f.write('config.Data.splitting = "LumiBased"\n')
-            f.write('config.Data.unitsPerJob = 50\n')
+            f.write('config.Data.unitsPerJob = 40\n')
             f.write('config.Data.lumiMask = "/afs/cern.ch/cms/CAF/CMSCOMM/COMM_DQM/certification/Collisions16/13TeV/Legacy_2016/Cert_271036-284044_13TeV_Legacy2016_Collisions16_JSON.txt" \n\n')
 
 #        f.write('config.Data.outLFNDirBase ="/store/user/sdeng/WWG_analysis/' + sample_type + '/' + year + '"\n')
         f.write('config.Data.publication = False\n')
         f.write('config.Data.ignoreLocality = True\n')
         f.write('config.Data.allowNonValidInputDataset = True\n')
-        f.write('config.Data.outputDatasetTag = "' + abbre_name + '" \n\n')
+        f.write('config.Data.outputDatasetTag = "' + abbre_name + '_mva" \n\n')
 
         f.write('config.section_("Site")\n')
         f.write('config.Site.storageSite = "T3_CH_CERNBOX"\n')

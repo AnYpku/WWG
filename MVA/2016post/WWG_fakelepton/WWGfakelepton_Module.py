@@ -31,6 +31,8 @@ class WWG_Producer(Module):
         self.out.branch("lepton_phi",  "F")
         self.out.branch("is_lepton_tight", "I")
 	self.out.branch("lepton_isprompt", "I")
+        self.out.branch("lepton_mvaTTH",  "F")
+        self.out.branch("lepton_miniISO",  "F")
         self.out.branch("n_bjets","I")
         self.out.branch("mt",  "F")
         self.out.branch("puppimt",  "F")
@@ -43,14 +45,13 @@ class WWG_Producer(Module):
 
     def analyze(self, event):
         """process event, return True (go to next module) or False (fail, go to next event)"""
-
         self.out.fillBranch("event",event.event)
         self.out.fillBranch("lumi",event.luminosityBlock)
         self.out.fillBranch("run",event.run)
 #        print event.event,event.luminosityBlock,event.run
         if hasattr(event,'Generator_weight'):
             self.out.fillBranch("gen_weight",event.Generator_weight)
-        else:
+        else:    
             self.out.fillBranch("gen_weight",0)
 
         electrons = Collection(event, "Electron")
@@ -84,11 +85,11 @@ class WWG_Producer(Module):
                 continue
             if abs(muons[i].eta) > 2.5:
                 continue
-            if muons[i].tightId == True and muons[i].pfRelIso04_all < 0.15:
+            if muons[i].mediumId == True and muons[i].mvaTTH > -0.2 and muons[i].miniPFRelIso_all < 0.4:
                 muons_select.append(i)
                 muon_pass += 1
                 leptons_select.append(i)
-            elif muons[i].tightId == True and muons[i].pfRelIso04_all < 0.25:
+            elif muons[i].mediumId == True and muons[i].mvaTTH < -0.2 and muons[i].miniPFRelIso_all < 0.4:
                  loose_but_not_tight_muons.append(i)
 
 
@@ -101,7 +102,7 @@ class WWG_Producer(Module):
             if abs(electrons[i].eta + electrons[i].deltaEtaSC) > 2.5:
                 continue
             if (abs(electrons[i].eta + electrons[i].deltaEtaSC) < 1.479 and abs(electrons[i].dz) < 0.1 and abs(electrons[i].dxy) < 0.05) or (abs(electrons[i].eta + electrons[i].deltaEtaSC) > 1.479 and abs(electrons[i].dz) < 0.2 and abs(electrons[i].dxy) < 0.1):
-                if electrons[i].cutBased >= 3:
+		if electrons[i].mvaFall17V2Iso_WP80==True:
                     electrons_select.append(i)
                     electron_pass += 1
                     leptons_select.append(i)
@@ -151,6 +152,8 @@ class WWG_Producer(Module):
             self.out.fillBranch("lepton_phi",muons[muon_index].phi)
             self.out.fillBranch("lepton_pid",muons[muon_index].pdgId)
             self.out.fillBranch("lepton_isprompt",lepton_isprompt)
+            self.out.fillBranch("lepton_mvaTTH",muons[muon_index].mvaTTH)
+            self.out.fillBranch("lepton_miniISO",muons[muon_index].miniPFRelIso_all)
 
 	elif (len(electrons_select) + len(loose_but_not_tight_electrons) == 1) and (len(muons_select) + len(loose_but_not_tight_muons) == 0):
 
@@ -203,6 +206,6 @@ class WWG_Producer(Module):
 
         self.out.fillBranch("met",event.MET_pt)
         self.out.fillBranch("puppimet",event.PuppiMET_pt)
-        print 'lepton is prompt', lepton_isprompt,' met',event.MET_pt,' the number of jets ',njets,'-> this event is saved'
+#        print 'lepton is prompt', lepton_isprompt,' met',event.MET_pt,' the number of jets ',njets,'-> this event is saved'
         return True
 WWGfakelepton_Module = lambda: WWG_Producer()

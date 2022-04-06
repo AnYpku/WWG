@@ -25,7 +25,7 @@ config.Data.unitsPerJob = 1
 config.Data.publication = False
 config.Data.ignoreLocality = True
 config.Data.allowNonValidInputDataset = True
-config.Data.outputDatasetTag = "GluGluHToWWTo2L2Nu_M125_TuneCP5_13TeV_powheg2_JHUGenV714_pythia8_2018" 
+config.Data.outputDatasetTag = "GluGluHToWWTo2L2Nu_M125_TuneCP5_13TeV_powheg2_JHUGenV714_pythia8_2018_mva" 
 
 config.section_("Site")
 config.Site.storageSite = "T3_CH_CERNBOX"

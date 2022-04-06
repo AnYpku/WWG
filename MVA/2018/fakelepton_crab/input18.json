@@ -4,7 +4,7 @@
     {"name":"/DoubleMuon/Run2018A-UL2018_MiniAODv2_NanoAODv9-v1/NANOAOD", "type":"data", "year":"2018","era":"A"},
     {"name":"/DoubleMuon/Run2018B-UL2018_MiniAODv2_NanoAODv9-v1/NANOAOD", "type":"data", "year":"2018","era":"B"},
     {"name":"/DoubleMuon/Run2018C-UL2018_MiniAODv2_NanoAODv9-v1/NANOAOD", "type":"data", "year":"2018","era":"C"},
-    {"name":"/DoubleMuon/Run2018D-UL2018_MiniAODv2_NanoAODv9-v1/NANOAOD", "type":"data", "year":"2018","era":"D"},
+    {"name":"/DoubleMuon/Run2018D-UL2018_MiniAODv2_NanoAODv9-v2/NANOAOD", "type":"data", "year":"2018","era":"D"},
     {"name":"/EGamma/Run2018A-UL2018_MiniAODv2_NanoAODv9-v1/NANOAOD", "type":"data", "year":"2018","era":"A"},
     {"name":"/EGamma/Run2018B-UL2018_MiniAODv2_NanoAODv9-v1/NANOAOD", "type":"data", "year":"2018","era":"B"},
     {"name":"/EGamma/Run2018C-UL2018_MiniAODv2_NanoAODv9-v1/NANOAOD", "type":"data", "year":"2018","era":"C"},

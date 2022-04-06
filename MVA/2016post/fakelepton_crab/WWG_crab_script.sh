@@ -24,6 +24,7 @@ else
 
     isdata=""
     year=""
+    era=""
     for i in "$@"
     do
         case $i in
@@ -36,13 +37,18 @@ else
             year="${i#*=}"
             ;;
         esac
+        case $i in
+            era=*)
+            era="${i#*=}"
+            ;;
+        esac
     done
 
     echo Found Proxy in: $X509_USER_PROXY
     if [ $isdata == "data" ]; then
-        python WWG_postproc.py -d -y $year
+        python WWG_postproc.py -d -y $year -e $era
     else
-        python WWG_postproc.py -y $year
+        python WWG_postproc.py -y $year 
     fi
 
 fi
