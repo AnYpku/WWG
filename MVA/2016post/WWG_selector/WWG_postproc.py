@@ -19,7 +19,7 @@ parser.add_argument('-f', dest='infile', default='', help='local file input')
 parser.add_argument('-y', dest='year', default='2016', help='year of dataset')
 parser.add_argument('-m', dest='mode', default='local', help='runmode local/condor')
 parser.add_argument('-d', dest='isdata',action='store_true',default=False)
-parser.add_argument('-e', dest='era',default='B')
+parser.add_argument('-e', dest='era',default='G')
 args = parser.parse_args()
 
 print "mode: ", args.mode
@@ -31,21 +31,20 @@ from PhysicsTools.NanoAODTools.postprocessing.modules.btv.btagSFProducer import 
 from PhysicsTools.NanoAODTools.postprocessing.modules.common.PrefireCorr import *
 
 if args.year=='2016':
-   PrefCorr_2016 = lambda: PrefCorr("L1prefiring_jetpt_2016BtoH.root","L1prefiring_jetpt_2016BtoH","L1prefiring_photonpt_2016BtoH.root","L1prefiring_photonpt_2016BtoH")
-   jmeCorrections_ak4_MC = createJMECorrector(True,2016,"B","Total","AK4PFchs",False,"PuppiMET",True,False,True,True)
-   jmeCorrections_ak4_Data = createJMECorrector(False,2016,args.era,"Total","AK4PFchs",False,"PuppiMET",True,False,True,True)
-   btagSF = lambda: btagSFProducer("Legacy2016",'deepcsv')
+   jmeCorrections_ak4_MC = createJMECorrector(isMC=True,dataYear="UL2016",runPeriod="B",jesUncert="Total",jetType="AK4PFchs",noGroom=False,metBranchName="MET",applySmearing=True,isFastSim=False,applyHEMfix=False,splitJER=False)
+   jmeCorrections_ak4_Data = createJMECorrector(isMC=False,dataYear="UL2016",runPeriod=args.era,jesUncert="Total",jetType="AK4PFchs",noGroom=False,metBranchName="MET",applySmearing=True,isFastSim=False,applyHEMfix=False,splitJER=False)
+
+if args.year=='2016pre':
+   jmeCorrections_ak4_MC = createJMECorrector(isMC=True,dataYear="UL2016_preVFP",runPeriod="B",jesUncert="Total",jetType="AK4PFchs",noGroom=False,metBranchName="MET",applySmearing=True,isFastSim=False,applyHEMfix=False,splitJER=False)
+   jmeCorrections_ak4_Data = createJMECorrector(isMC=False,dataYear="UL2016_preVFP",runPeriod=args.era,jesUncert="Total",jetType="AK4PFchs",noGroom=False,metBranchName="MET",applySmearing=True,isFastSim=False,applyHEMfix=False,splitJER=False)
 
 if args.year=='2017':
-   PrefCorr_2017 = lambda: PrefCorr("L1prefiring_jetpt_2017BtoF.root","L1prefiring_jetpt_2017BtoF","L1prefiring_photonpt_2017BtoF.root","L1prefiring_photonpt_2017BtoF")
-   jmeCorrections_ak4_MC = createJMECorrector(True,2017,"B","Total","AK4PFchs",False,"PuppiMET",True,False,True,True)
-   jmeCorrections_ak4_Data = createJMECorrector(False,2017,args.era,"Total","AK4PFchs",False,"PuppiMET",True,False,True,True)
-   btagSF = lambda: btagSFProducer("UL2017",'deepcsv')
+   jmeCorrections_ak4_MC = createJMECorrector(isMC=True,dataYear="UL2017",runPeriod="B",jesUncert="Total",jetType="AK4PFchs",noGroom=False,metBranchName="MET",applySmearing=True,isFastSim=False,applyHEMfix=False,splitJER=False)
+   jmeCorrections_ak4_Data = createJMECorrector(isMC=False,dataYear="UL2017",runPeriod=args.era,jesUncert="Total",jetType="AK4PFchs",noGroom=False,metBranchName="MET",applySmearing=True,isFastSim=False,applyHEMfix=False,splitJER=False)
 
 if args.year=='2018':
-   jmeCorrections_ak4_MC = createJMECorrector(True,2018,"A","Total","AK4PFchs",False,"PuppiMET",True,False,True,True)
-   jmeCorrections_ak4_Data = createJMECorrector(False,2018,args.era,"Total","AK4PFchs",False,"PuppiMET",True,False,True,True)
-   btagSF = lambda: btagSFProducer("UL2018",'deepcsv')
+   jmeCorrections_ak4_MC = createJMECorrector(isMC=True,dataYear="UL2018",runPeriod="A",jesUncert="Total",jetType="AK4PFchs",noGroom=False,metBranchName="MET",applySmearing=True,isFastSim=False,applyHEMfix=True,splitJER=False)
+   jmeCorrections_ak4_Data = createJMECorrector(isMC=False,dataYear="UL2018",runPeriod=args.era,jesUncert="Total",jetType="AK4PFchs",noGroom=False,metBranchName="MET",applySmearing=True,isFastSim=False,applyHEMfix=True,splitJER=False)
 
 # classify input files
 if args.infile:
@@ -64,14 +63,44 @@ else:
     fwkjobreport = True
 
 if args.isdata:
-       Modules = [countHistogramsModule(),jmeCorrections_ak4_Data(),WWG_Module()]
+       Modules = [countHistogramsModule(),WWG_Module()]
 else:
        if args.year=='2016':
-          Modules = [countHistogramsModule(),jmeCorrections_ak4_MC(),btagSF(),WWG_Module(),puWeight_2016(),PrefCorr_2016()]
+          Modules = [countHistogramsModule(),WWG_Module(),puWeight_UL2016()]
+       if args.year=='2016pre':
+          Modules = [countHistogramsModule(),WWG_Module(),puWeight_UL2016()]
        if args.year=='2017':
-          Modules = [countHistogramsModule(),jmeCorrections_ak4_MC(),btagSF(),WWG_Module(),puWeight_2017(),PrefCorr_2017()]
+          Modules = [countHistogramsModule(),WWG_Module(),puWeight_UL2017()]
        if args.year=='2018':
-          Modules = [countHistogramsModule(),jmeCorrections_ak4_MC(),btagSF(),WWG_Module(),puWeight_2018()]
+          Modules = [countHistogramsModule(),WWG_Module(),puWeight_UL2018()]
+
+if args.isdata and args.year=='2018' and args.era=='D' and 'MuonEG' in args.infile:
+
+    print 'special treatment for MuonEG_Run2018D'
+    import FWCore.PythonUtilities.LumiList as LumiList
+    import FWCore.ParameterSet.Config as cms
+
+    lumisToProcess = cms.untracked.VLuminosityBlockRange( LumiList.LumiList(filename="./Cert_314472-325175_13TeV_Legacy2018_Collisions18_JSON.txt").getCMSSWString().split(',') )
+    # print lumisToProcess
+
+    runsAndLumis_special = {}
+
+    for l in lumisToProcess:
+        if "-" in l:
+            start, stop = l.split("-")
+            rstart, lstart = start.split(":")
+            rstop, lstop = stop.split(":")
+        else:
+            rstart, lstart = l.split(":")
+            rstop, lstop = l.split(":")
+        if rstart != rstop:
+            raise Exception(
+                "Cannot convert '%s' to runs and lumis json format" % l)
+        if rstart not in runsAndLumis_special:
+            runsAndLumis_special[rstart] = []
+        runsAndLumis_special[rstart].append([int(lstart), int(lstop)])
+
+    jsoninput = runsAndLumis_special
 
 p=PostProcessor(".",infilelist,
                 branchsel="WWG_keep_and_drop.txt",

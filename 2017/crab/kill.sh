@@ -1,10 +1,5 @@
 #!/bin/bash
-crab kill -d crab2017/crab_DYJetsToLL_M-50_TuneCP5_13TeV-madgraphMLM-pythia8_2017
-crab kill -d crab2017/crab_MET_Run2017B
-crab kill -d crab2017/crab_MET_Run2017C
-crab kill -d crab2017/crab_MET_Run2017D
-crab kill -d crab2017/crab_MET_Run2017E
-crab kill -d crab2017/crab_MET_Run2017F
+crab kill -d crab2017/crab_DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8_2017
 crab kill -d crab2017/crab_MuonEG_Run2017B
 crab kill -d crab2017/crab_MuonEG_Run2017C
 crab kill -d crab2017/crab_MuonEG_Run2017D

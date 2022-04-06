@@ -27,9 +27,9 @@ Introduction slides:
 cmsrel CMSSW_10_6_20
 cd CMSSW_10_6_20/src
 cmsenv
-git clone https://github.com/cms-nanoAOD/nanoAOD-tools.git PhysicsTools/NanoAODTools
+git clone git@github.com:cms-nanoAOD/nanoAOD-tools.git PhysicsTools/NanoAODTools
 cd PhysicsTools/NanoAODTools
-git clone https://github.com/AnYpku/WWG.git
+git clone git@github.com:AnYpku/WWG.git
 scram b
 ```
 <br>

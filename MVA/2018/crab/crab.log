@@ -2012,3 +2012,160 @@ DEBUG 2022-02-18 08:55:56.126 UTC: 	 CRAB Client version: v3.220210
 DEBUG 2022-02-18 08:55:56.126 UTC: 	 Running on: Linux lxplus778.cern.ch 3.10.0-1160.53.1.el7.x86_64 #1 SMP Fri Jan 14 13:59:45 UTC 2022 x86_64 x86_64 x86_64 GNU/Linux - CentOS Linux 7 (Core)
 DEBUG 2022-02-18 08:55:56.126 UTC: 	 Executing command: 'submit'
 DEBUG 2022-02-18 08:55:56.156 UTC: 	 Found CRAB cache file /afs/cern.ch/user/y/yian/.crab3
+DEBUG 2022-02-18 12:54:50.200 UTC: 	 CRAB Client version: v3.220210
+DEBUG 2022-02-18 12:54:50.200 UTC: 	 Running on: Linux lxplus799.cern.ch 3.10.0-1160.53.1.el7.x86_64 #1 SMP Fri Jan 14 13:59:45 UTC 2022 x86_64 x86_64 x86_64 GNU/Linux - CentOS Linux 7 (Core)
+DEBUG 2022-02-18 12:54:50.200 UTC: 	 Executing command: 'submit'
+DEBUG 2022-02-18 12:54:50.201 UTC: 	 Found CRAB cache file /afs/cern.ch/user/y/yian/.crab3
+INFO 2022-02-18 12:54:50.202 UTC: 	 Will use CRAB configuration file crabcode_2018/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8_2018_cfg.py
+DEBUG 2022-02-18 12:54:50.202 UTC: 	 Loading CRAB configuration file.
+ERROR 2022-02-18 12:54:50.219 UTC: 	 Error while loading CRAB configuration:
+EOL while scanning string literal (DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8_2018_cfg.py, line 12)
+Please refer to https://twiki.cern.ch/twiki/bin/view/CMSPublic/CRAB3FAQ
+See the ./crab.log file for more details.
+The documentation about the CRAB configuration file can be found in https://twiki.cern.ch/twiki/bin/view/CMSPublic/CRAB3ConfigurationFile
+ERROR 2022-02-18 12:54:50.219 UTC: 	 Caught ClientException exception
+Traceback (most recent call last):
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220210.00/bin/crab.py", line 162, in <module>
+    client()
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220210.00/bin/crab.py", line 147, in __call__
+    self.cmd = sub_cmd(self.logger, args[1:])
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220210.00/lib/CRABClient/Commands/submit.py", line 36, in __init__
+    SubCommand.__init__(self, logger, cmdargs, disable_interspersed_args=True)
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220210.00/lib/CRABClient/Commands/SubCommand.py", line 316, in __init__
+    self.loadConfig(self.options.config, self.args)
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220210.00/lib/CRABClient/Commands/SubCommand.py", line 89, in loadConfig
+    raise ConfigurationException(configmsg)
+ConfigurationException: Error while loading CRAB configuration:
+EOL while scanning string literal (DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8_2018_cfg.py, line 12)
+Please refer to https://twiki.cern.ch/twiki/bin/view/CMSPublic/CRAB3FAQ
+See the ./crab.log file for more details.
+The documentation about the CRAB configuration file can be found in https://twiki.cern.ch/twiki/bin/view/CMSPublic/CRAB3ConfigurationFile
+INFO 2022-02-18 12:54:50.266 UTC: 	 Log file is /afs/cern.ch/work/y/yian/work/GZ/CMSSW_10_6_29/src/PhysicsTools/NanoAODTools/WWG/MVA/2018/crab/crab.log
+DEBUG 2022-02-18 12:56:47.566 UTC: 	 CRAB Client version: v3.220210
+DEBUG 2022-02-18 12:56:47.567 UTC: 	 Running on: Linux lxplus799.cern.ch 3.10.0-1160.53.1.el7.x86_64 #1 SMP Fri Jan 14 13:59:45 UTC 2022 x86_64 x86_64 x86_64 GNU/Linux - CentOS Linux 7 (Core)
+DEBUG 2022-02-18 12:56:47.567 UTC: 	 Executing command: 'submit'
+DEBUG 2022-02-18 12:56:47.567 UTC: 	 Found CRAB cache file /afs/cern.ch/user/y/yian/.crab3
+INFO 2022-02-18 12:56:47.568 UTC: 	 Will use CRAB configuration file crabcode_2018/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8_2018_cfg.py
+DEBUG 2022-02-18 12:56:47.568 UTC: 	 Loading CRAB configuration file.
+DEBUG 2022-02-18 12:56:47.573 UTC: 	 Will use CRAB Analysis plugin (i.e. will run an analysis job type).
+ERROR 2022-02-18 12:56:47.573 UTC: 	 Task requests 8000 MB of memory, above the allowed maximum of 5000 for a 1 core(s) job.
+
+The documentation about the CRAB configuration file can be found in https://twiki.cern.ch/twiki/bin/view/CMSPublic/CRAB3ConfigurationFile
+ERROR 2022-02-18 12:56:47.573 UTC: 	 Caught ClientException exception
+Traceback (most recent call last):
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220210.00/bin/crab.py", line 162, in <module>
+    client()
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220210.00/bin/crab.py", line 147, in __call__
+    self.cmd = sub_cmd(self.logger, args[1:])
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220210.00/lib/CRABClient/Commands/submit.py", line 36, in __init__
+    SubCommand.__init__(self, logger, cmdargs, disable_interspersed_args=True)
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220210.00/lib/CRABClient/Commands/SubCommand.py", line 316, in __init__
+    self.loadConfig(self.options.config, self.args)
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220210.00/lib/CRABClient/Commands/SubCommand.py", line 94, in loadConfig
+    raise ConfigurationException(configmsg)
+ConfigurationException: Task requests 8000 MB of memory, above the allowed maximum of 5000 for a 1 core(s) job.
+
+The documentation about the CRAB configuration file can be found in https://twiki.cern.ch/twiki/bin/view/CMSPublic/CRAB3ConfigurationFile
+INFO 2022-02-18 12:56:47.588 UTC: 	 Log file is /afs/cern.ch/work/y/yian/work/GZ/CMSSW_10_6_29/src/PhysicsTools/NanoAODTools/WWG/MVA/2018/crab/crab.log
+DEBUG 2022-02-18 13:05:31.317 UTC: 	 CRAB Client version: v3.220210
+DEBUG 2022-02-18 13:05:31.317 UTC: 	 Running on: Linux lxplus799.cern.ch 3.10.0-1160.53.1.el7.x86_64 #1 SMP Fri Jan 14 13:59:45 UTC 2022 x86_64 x86_64 x86_64 GNU/Linux - CentOS Linux 7 (Core)
+DEBUG 2022-02-18 13:05:31.317 UTC: 	 Executing command: 'submit'
+DEBUG 2022-02-18 13:05:31.318 UTC: 	 Found CRAB cache file /afs/cern.ch/user/y/yian/.crab3
+ERROR 2022-02-18 13:05:31.318 UTC: 	 CRAB configuration file crab2018/DY not found.
+ERROR 2022-02-18 13:05:31.320 UTC: 	 Caught ClientException exception
+Traceback (most recent call last):
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220210.00/bin/crab.py", line 162, in <module>
+    client()
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220210.00/bin/crab.py", line 147, in __call__
+    self.cmd = sub_cmd(self.logger, args[1:])
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220210.00/lib/CRABClient/Commands/submit.py", line 36, in __init__
+    SubCommand.__init__(self, logger, cmdargs, disable_interspersed_args=True)
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220210.00/lib/CRABClient/Commands/SubCommand.py", line 316, in __init__
+    self.loadConfig(self.options.config, self.args)
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220210.00/lib/CRABClient/Commands/SubCommand.py", line 51, in loadConfig
+    raise ConfigurationException("CRAB configuration file %s not found." % (configname))
+ConfigurationException: CRAB configuration file crab2018/DY not found.
+INFO 2022-02-18 13:05:31.336 UTC: 	 Log file is /afs/cern.ch/work/y/yian/work/GZ/CMSSW_10_6_29/src/PhysicsTools/NanoAODTools/WWG/MVA/2018/crab/crab.log
+DEBUG 2022-02-18 13:57:39.892 UTC: 	 CRAB Client version: v3.220210
+DEBUG 2022-02-18 13:57:39.892 UTC: 	 Running on: Linux lxplus799.cern.ch 3.10.0-1160.53.1.el7.x86_64 #1 SMP Fri Jan 14 13:59:45 UTC 2022 x86_64 x86_64 x86_64 GNU/Linux - CentOS Linux 7 (Core)
+DEBUG 2022-02-18 13:57:39.892 UTC: 	 Executing command: 'submit'
+DEBUG 2022-02-18 13:57:39.892 UTC: 	 Found CRAB cache file /afs/cern.ch/user/y/yian/.crab3
+INFO 2022-02-18 13:57:39.893 UTC: 	 Will use CRAB configuration file crabcode_2018/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8_2018_cfg.py
+DEBUG 2022-02-18 13:57:39.893 UTC: 	 Loading CRAB configuration file.
+DEBUG 2022-02-18 13:57:39.928 UTC: 	 Will use CRAB Analysis plugin (i.e. will run an analysis job type).
+ERROR 2022-02-18 13:57:39.929 UTC: 	 Working area '/afs/cern.ch/work/y/yian/work/GZ/CMSSW_10_6_29/src/PhysicsTools/NanoAODTools/WWG/MVA/2018/crab/crab2018/crab_DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8_2018_mva' already exists 
+Please change the requestName in the config file
+ERROR 2022-02-18 13:57:39.929 UTC: 	 Caught ClientException exception
+Traceback (most recent call last):
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220210.00/bin/crab.py", line 162, in <module>
+    client()
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220210.00/bin/crab.py", line 147, in __call__
+    self.cmd = sub_cmd(self.logger, args[1:])
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220210.00/lib/CRABClient/Commands/submit.py", line 36, in __init__
+    SubCommand.__init__(self, logger, cmdargs, disable_interspersed_args=True)
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220210.00/lib/CRABClient/Commands/SubCommand.py", line 320, in __init__
+    getattr(self.configuration.General, 'requestName', None))
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220210.00/lib/CRABClient/ClientUtilities.py", line 387, in createWorkArea
+    raise ConfigException("Working area '%s' already exists \nPlease change the requestName in the config file" % fullpath)
+ConfigException: Working area '/afs/cern.ch/work/y/yian/work/GZ/CMSSW_10_6_29/src/PhysicsTools/NanoAODTools/WWG/MVA/2018/crab/crab2018/crab_DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8_2018_mva' already exists 
+Please change the requestName in the config file
+INFO 2022-02-18 13:57:40.019 UTC: 	 Log file is /afs/cern.ch/work/y/yian/work/GZ/CMSSW_10_6_29/src/PhysicsTools/NanoAODTools/WWG/MVA/2018/crab/crab.log
+DEBUG 2022-02-24 03:19:24.448 UTC: 	 CRAB Client version: v3.220210
+ERROR 2022-02-24 03:19:24.607 UTC: 	 Unhandled Exception!
+ERROR 2022-02-24 03:19:24.608 UTC: 	 
+Traceback (most recent call last):
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220210.00/bin/crab.py", line 202, in <module>
+    flushMemoryLogger(client.tblogger, client.memhandler, client.logger.logfile)
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220210.00/lib/CRABClient/ClientUtilities.py", line 177, in flushMemoryLogger
+    memhandler.close()
+  File "/cvmfs/cms.cern.ch/slc7_amd64_gcc820/external/python/2.7.15-pafccj/lib/python2.7/logging/handlers.py", line 1235, in close
+    self.flush()
+  File "/cvmfs/cms.cern.ch/slc7_amd64_gcc820/external/python/2.7.15-pafccj/lib/python2.7/logging/handlers.py", line 1225, in flush
+    self.target.handle(record)
+  File "/cvmfs/cms.cern.ch/slc7_amd64_gcc820/external/python/2.7.15-pafccj/lib/python2.7/logging/__init__.py", line 766, in handle
+    self.emit(record)
+  File "/cvmfs/cms.cern.ch/slc7_amd64_gcc820/external/python/2.7.15-pafccj/lib/python2.7/logging/__init__.py", line 964, in emit
+    StreamHandler.emit(self, record)
+  File "/cvmfs/cms.cern.ch/slc7_amd64_gcc820/external/python/2.7.15-pafccj/lib/python2.7/logging/__init__.py", line 892, in emit
+    self.flush()
+  File "/cvmfs/cms.cern.ch/slc7_amd64_gcc820/external/python/2.7.15-pafccj/lib/python2.7/logging/__init__.py", line 852, in flush
+    self.stream.flush()
+KeyboardInterrupt
+ERROR 2022-02-24 03:19:24.611 UTC: 	 ERROR: KeyboardInterrupt: 
+ERROR 2022-02-24 03:19:24.611 UTC: 	 
+	Please email hn-cms-computing-tools@cern.ch for support with the crab.log file or crab.log URL.
+ERROR 2022-02-24 03:19:24.612 UTC: 	 	Client Version: v3.220210
+ERROR 2022-02-24 03:19:24.612 UTC: 	 	Please use 'crab uploadlog' to upload the log file /afs/cern.ch/work/y/yian/work/GZ/CMSSW_10_6_29/src/PhysicsTools/NanoAODTools/WWG/MVA/2018/crab/crab.log to the CRAB cache.
+DEBUG 2022-02-24 03:19:26.567 UTC: 	 CRAB Client version: v3.220210
+DEBUG 2022-02-24 03:19:26.567 UTC: 	 Running on: Linux lxplus747.cern.ch 3.10.0-1160.53.1.el7.x86_64 #1 SMP Fri Jan 14 13:59:45 UTC 2022 x86_64 x86_64 x86_64 GNU/Linux - CentOS Linux 7 (Core)
+DEBUG 2022-02-24 03:19:26.567 UTC: 	 Executing command: 'status'
+DEBUG 2022-02-24 03:19:26.567 UTC: 	 Found CRAB cache file /afs/cern.ch/user/y/yian/.crab3
+ERROR 2022-02-24 03:19:26.706 UTC: 	 Keyboard Interrupted
+INFO 2022-02-24 03:19:26.707 UTC: 	 Log file is /afs/cern.ch/work/y/yian/work/GZ/CMSSW_10_6_29/src/PhysicsTools/NanoAODTools/WWG/MVA/2018/crab/crab.log
+DEBUG 2022-02-24 03:19:28.008 UTC: 	 CRAB Client version: v3.220210
+DEBUG 2022-02-24 03:19:28.009 UTC: 	 Running on: Linux lxplus747.cern.ch 3.10.0-1160.53.1.el7.x86_64 #1 SMP Fri Jan 14 13:59:45 UTC 2022 x86_64 x86_64 x86_64 GNU/Linux - CentOS Linux 7 (Core)
+DEBUG 2022-02-24 03:19:28.009 UTC: 	 Executing command: 'status'
+DEBUG 2022-02-24 03:19:28.009 UTC: 	 Found CRAB cache file /afs/cern.ch/user/y/yian/.crab3
+ERROR 2022-02-24 03:19:28.101 UTC: 	 Keyboard Interrupted
+INFO 2022-02-24 03:19:28.102 UTC: 	 Log file is /afs/cern.ch/work/y/yian/work/GZ/CMSSW_10_6_29/src/PhysicsTools/NanoAODTools/WWG/MVA/2018/crab/crab.log
+DEBUG 2022-03-24 16:10:17.113 UTC: 	 CRAB Client version: v3.220210
+DEBUG 2022-03-24 16:10:17.113 UTC: 	 Running on: Linux lxplus752.cern.ch 3.10.0-1160.59.1.el7.x86_64 #1 SMP Wed Feb 23 16:47:03 UTC 2022 x86_64 x86_64 x86_64 GNU/Linux - CentOS Linux 7 (Core)
+DEBUG 2022-03-24 16:10:17.113 UTC: 	 Executing command: 'status'
+DEBUG 2022-03-24 16:10:17.121 UTC: 	 Found CRAB cache file /afs/cern.ch/user/y/yian/.crab3
+ERROR 2022-03-24 16:10:17.127 UTC: 	 Cannot find .requestcache file in CRAB project directory /afs/cern.ch/work/y/yian/work/GZ/CMSSW_10_6_29/src/PhysicsTools/NanoAODTools/WWG/MVA/2018/crab/crab2018/crab_DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8_2018_mva
+ERROR 2022-03-24 16:10:17.127 UTC: 	 Caught ClientException exception
+Traceback (most recent call last):
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220210.00/bin/crab.py", line 162, in <module>
+    client()
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220210.00/bin/crab.py", line 147, in __call__
+    self.cmd = sub_cmd(self.logger, args[1:])
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220210.00/lib/CRABClient/Commands/status.py", line 48, in __init__
+    SubCommand.__init__(self, logger, cmdargs)
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220210.00/lib/CRABClient/Commands/SubCommand.py", line 275, in __init__
+    SubCommand.validateOptions(self)
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220210.00/lib/CRABClient/Commands/SubCommand.py", line 646, in validateOptions
+    self.loadLocalCache()
+  File "/cvmfs/cms.cern.ch/share/cms/crab-prod/v3.220210.00/lib/CRABClient/Commands/SubCommand.py", line 508, in loadLocalCache
+    raise ex
+CachefileNotFoundException: Cannot find .requestcache file in CRAB project directory /afs/cern.ch/work/y/yian/work/GZ/CMSSW_10_6_29/src/PhysicsTools/NanoAODTools/WWG/MVA/2018/crab/crab2018/crab_DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8_2018_mva
+INFO 2022-03-24 16:10:17.310 UTC: 	 Log file is /afs/cern.ch/work/y/yian/work/GZ/CMSSW_10_6_29/src/PhysicsTools/NanoAODTools/WWG/MVA/2018/crab/crab.log

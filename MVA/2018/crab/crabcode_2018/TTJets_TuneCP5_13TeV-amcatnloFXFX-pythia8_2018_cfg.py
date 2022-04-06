@@ -16,7 +16,7 @@ config.JobType.sendPythonFolder  = True
 config.JobType.allowUndistributedCMSSW = True 
 
 config.section_("Data")
-config.Data.inputDataset = "/TTJets_TuneCP5_13TeV-amcatnloFXFX-pythia8/RunIISummer20UL18NanoAODv2-106X_upgrade2018_realistic_v15_L1v1-v1/NANOAODSIM" 
+config.Data.inputDataset = "/TTJets_TuneCP5_13TeV-amcatnloFXFX-pythia8/RunIISummer20UL18NanoAODv9-106X_upgrade2018_realistic_v16_L1v1-v1/NANOAODSIM" 
 config.Data.inputDBS = "global"
 # config.Data.splitting = "FileBased"
 # config.Data.unitsPerJob = 1
@@ -25,7 +25,7 @@ config.Data.unitsPerJob = 1
 config.Data.publication = False
 config.Data.ignoreLocality = True
 config.Data.allowNonValidInputDataset = True
-config.Data.outputDatasetTag = "TTJets_TuneCP5_13TeV-amcatnloFXFX-pythia8_2018" 
+config.Data.outputDatasetTag = "TTJets_TuneCP5_13TeV-amcatnloFXFX-pythia8_2018_mva" 
 
 config.section_("Site")
 config.Site.storageSite = "T3_CH_CERNBOX"

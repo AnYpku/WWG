@@ -1,0 +1,2 @@
+root://eosuser.cern.ch//eos/user/y/yian/MuonEG/MuonEG_Run2018D_tmp/210423_135225/0000/tree_1.root
+root://eosuser.cern.ch//eos/user/y/yian/MuonEG/MuonEG_Run2018D_tmp/210423_135225/0000/tree_10.root

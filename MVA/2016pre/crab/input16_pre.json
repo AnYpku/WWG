@@ -1,7 +1,7 @@
 [
-    {"name":"/ST_tW_top_5f_NoFullyHadronicDecays_TuneCP5_13TeV-powheg-pythia8/RunIISummer20UL16NanoAODAPVv2-106X_mcRun2_asymptotic_preVFP_v9-v2/NANOAODSIM", "type":"MC", "year":"2016","era":"B"},
-    {"name":"/ZGToLLG_01J_5f_TuneCP5_13TeV-amcatnloFXFX-pythia8/RunIISummer20UL16NanoAODAPVv2-106X_mcRun2_asymptotic_preVFP_v9-v1/NANOAODSIM", "type":"MC", "year":"2016","era":"B"},
-    {"name":"/TTJets_TuneCP5_13TeV-amcatnloFXFX-pythia8/RunIISummer20UL16NanoAODAPVv2-106X_mcRun2_asymptotic_preVFP_v9-v1/NANOAODSIM", "type":"MC", "year":"2016","era":"B"},
+    {"name":"/ST_tW_top_5f_NoFullyHadronicDecays_TuneCP5_13TeV-powheg-pythia8/RunIISummer20UL16NanoAODAPVv9-106X_mcRun2_asymptotic_preVFP_v11-v1/NANOAODSIM", "type":"MC", "year":"2016","era":"B"},
+    {"name":"/ZGToLLG_01J_5f_TuneCP5_13TeV-amcatnloFXFX-pythia8/RunIISummer20UL16NanoAODAPVv9-106X_mcRun2_asymptotic_preVFP_v11-v1/NANOAODSIM", "type":"MC", "year":"2016","era":"B"},
+    {"name":"/TTJets_TuneCP5_13TeV-amcatnloFXFX-pythia8/RunIISummer20UL16NanoAODAPVv9-106X_mcRun2_asymptotic_preVFP_v11-v1/NANOAODSIM", "type":"MC", "year":"2016","era":"B"},
     {"name":"/tZq_ll_4f_ckm_NLO_TuneCP5_13TeV-amcatnlo-pythia8/RunIISummer20UL16NanoAODAPVv9-106X_mcRun2_asymptotic_preVFP_v11-v1/NANOAODSIM", "type":"MC", "year":"2016","era":"B"},
     {"name":"/ZZ_TuneCP5_13TeV-pythia8/RunIISummer20UL16NanoAODAPVv9-106X_mcRun2_asymptotic_preVFP_v11-v1/NANOAODSIM", "type":"MC", "year":"2016","era":"B"},
     {"name":"/WW_TuneCP5_13TeV-pythia8/RunIISummer20UL16NanoAODAPVv9-106X_mcRun2_asymptotic_preVFP_v11-v1/NANOAODSIM", "type":"MC", "year":"2016","era":"B"},
@@ -40,7 +40,5 @@
     {"name":"/MET/Run2016C-HIPM_UL2016_MiniAODv2_NanoAODv9-v1/NANOAOD", "type":"data", "year":"2016","era":"C"},
     {"name":"/MET/Run2016D-HIPM_UL2016_MiniAODv2_NanoAODv9-v1/NANOAOD", "type":"data", "year":"2016","era":"D"},
     {"name":"/MET/Run2016E-HIPM_UL2016_MiniAODv2_NanoAODv9-v1/NANOAOD", "type":"data", "year":"2016","era":"E"},
-    {"name":"/MET/Run2016F-HIPM_UL2016_MiniAODv2_NanoAODv9-v1/NANOAOD", "type":"data", "year":"2016","era":"F"},
-    {"name":"/MET/Run2016G-UL2016_MiniAODv2_NanoAODv9-v1/NANOAOD", "type":"data", "year":"2016","era":"G"},
-    {"name":"/MET/Run2016H-UL2016_MiniAODv2_NanoAODv9-v1/NANOAOD", "type":"data", "year":"2016","era":"H"}
+    {"name":"/MET/Run2016F-HIPM_UL2016_MiniAODv2_NanoAODv9-v1/NANOAOD", "type":"data", "year":"2016","era":"F"}
 ]

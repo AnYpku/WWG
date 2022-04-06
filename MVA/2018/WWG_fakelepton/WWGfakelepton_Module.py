@@ -208,6 +208,6 @@ class WWG_Producer(Module):
 
         self.out.fillBranch("met",event.MET_pt)
         self.out.fillBranch("puppimet",event.PuppiMET_pt)
-        print 'lepton is prompt', lepton_isprompt,' met',event.MET_pt,' the number of jets ',njets,'-> this event is saved'
+#        print 'lepton is prompt', lepton_isprompt,' met',event.MET_pt,' the number of jets ',njets,'-> this event is saved'
         return True
 WWGfakelepton_Module = lambda: WWG_Producer()

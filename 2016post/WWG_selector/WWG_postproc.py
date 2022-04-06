@@ -19,7 +19,7 @@ parser.add_argument('-f', dest='infile', default='', help='local file input')
 parser.add_argument('-y', dest='year', default='2016', help='year of dataset')
 parser.add_argument('-m', dest='mode', default='local', help='runmode local/condor')
 parser.add_argument('-d', dest='isdata',action='store_true',default=False)
-parser.add_argument('-e', dest='era',default='A')
+parser.add_argument('-e', dest='era',default='G')
 args = parser.parse_args()
 
 print "mode: ", args.mode
@@ -63,16 +63,16 @@ else:
     fwkjobreport = True
 
 if args.isdata:
-       Modules = [countHistogramsModule(),jmeCorrections_ak4_Data(),WWG_Module()]
+       Modules = [countHistogramsModule(),WWG_Module()]
 else:
        if args.year=='2016':
-          Modules = [countHistogramsModule(),WWG_Module(),jmeCorrections_ak4_MC(),puWeight_UL2016()]
+          Modules = [countHistogramsModule(),WWG_Module(),puWeight_UL2016()]
        if args.year=='2016pre':
-          Modules = [countHistogramsModule(),WWG_Module(),jmeCorrections_ak4_MC(),puWeight_UL2016()]
+          Modules = [countHistogramsModule(),WWG_Module(),puWeight_UL2016()]
        if args.year=='2017':
-          Modules = [countHistogramsModule(),WWG_Module(),jmeCorrections_ak4_MC(),puWeight_UL2017()]
+          Modules = [countHistogramsModule(),WWG_Module(),puWeight_UL2017()]
        if args.year=='2018':
-          Modules = [countHistogramsModule(),WWG_Module(),jmeCorrections_ak4_MC(),puWeight_UL2018()]
+          Modules = [countHistogramsModule(),WWG_Module(),puWeight_UL2018()]
 
 if args.isdata and args.year=='2018' and args.era=='D' and 'MuonEG' in args.infile:
 
