@@ -286,7 +286,7 @@ class WWG_Producer(Module):
 	       lep2_is_tight=1
 #           print 'test emu channel',len(genparts)
             if hasattr(event, 'nGenPart'):
-                print 'calculate the lepton flag in channel emu'
+#                print 'calculate the lepton flag in channel emu'
                 for i in range(0,len(genparts)):
 		   if genparts[i].pt > 5 and abs(genparts[i].pdgId) == 13 and ((genparts[i].statusFlags & isprompt_mask == isprompt_mask) or (genparts[i].statusFlags & isprompttaudecayproduct == isprompttaudecayproduct)) and deltaR(muons[muons_select[0]].eta,muons[muons_select[0]].phi,genparts[i].eta,genparts[i].phi) < 0.3:
                        lepton1_isprompt=1
@@ -338,7 +338,7 @@ class WWG_Producer(Module):
                   break
         if photon_pass>0:
            if hasattr(photons[photon_index],'genPartIdx') :
-               print 'calculate the photon flag'
+#               print 'calculate the photon flag'
                if photons[photon_index].genPartIdx >= 0 and genparts[photons[photon_index].genPartIdx].pdgId  == 22: 
                    if ((genparts[photons[photon_index].genPartIdx].statusFlags & isprompt_mask == isprompt_mask) or (genparts[photons[photon_index].genPartIdx].statusFlags & isdirectprompttaudecayproduct_mask == isdirectprompttaudecayproduct_mask)) and (genparts[photons[photon_index].genPartIdx].statusFlags & isfromhardprocess_mask == isfromhardprocess_mask):
                        photon_gen_matching = 6
@@ -511,8 +511,8 @@ class WWG_Producer(Module):
         else:
             self.out.fillBranch("ntruepu",0)
 
-        print 'channel',channel,', mu_pass:',muon_pass,', ele_pass:',electron_pass,', photon_pass:',photon_pass,', is lepton1 real ',lepton1_isprompt,', is lepton1 tight ',lep1_is_tight,', is lepton2 real ',lepton2_isprompt,', is lepton2 tight ',lep2_is_tight,', is photon real ',photon_isprompt,' or ',photon_gen_matching
-        print '------\n'
+#        print 'channel',channel,', mu_pass:',muon_pass,', ele_pass:',electron_pass,', photon_pass:',photon_pass,', is lepton1 real ',lepton1_isprompt,', is lepton1 tight ',lep1_is_tight,', is lepton2 real ',lepton2_isprompt,', is lepton2 tight ',lep2_is_tight,', is photon real ',photon_isprompt,' or ',photon_gen_matching
+#        print '------\n'
 
         self.out.fillBranch("njets50",njets50)
         self.out.fillBranch("njets40",njets40)

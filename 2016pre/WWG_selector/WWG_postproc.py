@@ -19,7 +19,7 @@ parser.add_argument('-f', dest='infile', default='', help='local file input')
 parser.add_argument('-y', dest='year', default='2016', help='year of dataset')
 parser.add_argument('-m', dest='mode', default='local', help='runmode local/condor')
 parser.add_argument('-d', dest='isdata',action='store_true',default=False)
-parser.add_argument('-e', dest='era',default='A')
+parser.add_argument('-e', dest='era',default='B')
 args = parser.parse_args()
 
 print "mode: ", args.mode
