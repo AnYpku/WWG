@@ -4,6 +4,6 @@
     {"name":"/WJetsToLNu_TuneCP5_13TeV-amcatnloFXFX-pythia8/RunIISummer20UL16NanoAODv9-106X_mcRun2_asymptotic_v17-v2/NANOAODSIM", "type":"MC", "year":"2016","era":"G"},
     {"name":"/DoubleEG/Run2016G-UL2016_MiniAODv2_NanoAODv9-v1/NANOAOD", "type":"data", "year":"2016","era":"G"},
     {"name":"/DoubleEG/Run2016H-UL2016_MiniAODv2_NanoAODv9-v1/NANOAOD", "type":"data", "year":"2016","era":"H"},
-    {"name":"/DoubleMuon/Run2016G-UL2016_MiniAODv2_NanoAODv9-v1/NANOAOD", "type":"data", "year":"2016","era":"G"},
+    {"name":"/DoubleMuon/Run2016G-UL2016_MiniAODv2_NanoAODv9-v2/NANOAOD", "type":"data", "year":"2016","era":"G"},
     {"name":"/DoubleMuon/Run2016H-UL2016_MiniAODv2_NanoAODv9-v1/NANOAOD", "type":"data", "year":"2016","era":"H"}
 ]

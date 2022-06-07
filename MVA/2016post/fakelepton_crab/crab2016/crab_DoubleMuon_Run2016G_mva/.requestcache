@@ -83,7 +83,7 @@ Rp41
 (dp42
 S'inputDataset'
 p43
-S'/DoubleMuon/Run2016G-UL2016_MiniAODv2_NanoAODv9-v1/NANOAOD'
+S'/DoubleMuon/Run2016G-UL2016_MiniAODv2_NanoAODv9-v2/NANOAOD'
 p44
 sS'allowNonValidInputDataset'
 p45
@@ -277,7 +277,7 @@ S'prod'
 p117
 sS'RequestName'
 p118
-V220331_163413:yian_crab_DoubleMuon_Run2016G_mva
+V220411_061002:yian_crab_DoubleMuon_Run2016G_mva
 p119
 sS'voRole'
 p120

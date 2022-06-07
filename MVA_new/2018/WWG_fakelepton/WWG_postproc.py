@@ -63,16 +63,21 @@ else:
     fwkjobreport = True
 
 if args.isdata:
-       Modules = [countHistogramsModule(),WWGfakelepton_Module()]
+       if '2016' in args.year:
+           Modules = [countHistogramsModule(),jmeCorrections_ak4_Data(),muonScaleRes2016(),WWGfakelepton_Module()]
+       if args.year=='2017':
+           Modules = [countHistogramsModule(),jmeCorrections_ak4_Data(),muonScaleRes2017(),WWGfakelepton_Module()]
+       if args.year=='2018':
+           Modules = [countHistogramsModule(),jmeCorrections_ak4_Data(),muonScaleRes2018(),WWGfakelepton_Module()]
 else:
        if args.year=='2016':
-          Modules = [countHistogramsModule(),WWGfakelepton_Module(),puWeight_UL2016()]
+          Modules = [countHistogramsModule(),muonScaleRes2016(),jmeCorrections_ak4_MC(),WWGfakelepton_Module(),puWeight_UL2016()]
        if args.year=='2016pre':
-          Modules = [countHistogramsModule(),WWGfakelepton_Module(),puWeight_UL2016()]
+          Modules = [countHistogramsModule(),muonScaleRes2016(),jmeCorrections_ak4_MC(),WWGfakelepton_Module(),puWeight_UL2016()]
        if args.year=='2017':
-          Modules = [countHistogramsModule(),WWGfakelepton_Module(),puWeight_UL2017()]
+          Modules = [countHistogramsModule(),muonScaleRes2017(),jmeCorrections_ak4_MC(),WWGfakelepton_Module(),puWeight_UL2017()]
        if args.year=='2018':
-          Modules = [countHistogramsModule(),WWGfakelepton_Module(),puWeight_UL2018()]
+          Modules = [countHistogramsModule(),muonScaleRes2018(),jmeCorrections_ak4_MC(),WWGfakelepton_Module(),puWeight_UL2018()]
 
 if args.isdata and args.year=='2018' and args.era=='D' and 'MuonEG' in args.infile:
 

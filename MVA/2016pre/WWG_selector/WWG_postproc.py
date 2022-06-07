@@ -31,7 +31,7 @@ from PhysicsTools.NanoAODTools.postprocessing.modules.btv.btagSFProducer import 
 from PhysicsTools.NanoAODTools.postprocessing.modules.common.PrefireCorr import *
 
 if args.year=='2016':
-   jmeCorrections_ak4_MC = createJMECorrector(isMC=True,dataYear="UL2016",runPeriod="B",jesUncert="Total",jetType="AK4PFchs",noGroom=False,metBranchName="MET",applySmearing=True,isFastSim=False,applyHEMfix=False,splitJER=False)
+   jmeCorrections_ak4_MC = createJMECorrector(isMC=True,dataYear="UL2016",runPeriod="G",jesUncert="Total",jetType="AK4PFchs",noGroom=False,metBranchName="MET",applySmearing=True,isFastSim=False,applyHEMfix=False,splitJER=False)
    jmeCorrections_ak4_Data = createJMECorrector(isMC=False,dataYear="UL2016",runPeriod=args.era,jesUncert="Total",jetType="AK4PFchs",noGroom=False,metBranchName="MET",applySmearing=True,isFastSim=False,applyHEMfix=False,splitJER=False)
 
 if args.year=='2016pre':

@@ -33,7 +33,6 @@ class WWG_Producer(Module):
         self.out.branch("lepton_miniISO",  "F")
         self.out.branch("is_lepton_tight", "I")
 	self.out.branch("lepton_isprompt", "I")
-        self.out.branch("n_bjets","I")
         self.out.branch("mt",  "F")
         self.out.branch("puppimt",  "F")
         self.out.branch("met",  "F")
@@ -81,7 +80,7 @@ class WWG_Producer(Module):
         #selection on muons
         muon_pass =0
         for i in range(0,len(muons)):
-            if muons[i].pt < 10:
+            if muons[i].corrected_pt < 10:
                 continue
             if abs(muons[i].eta) > 2.5:
                 continue
@@ -124,14 +123,11 @@ class WWG_Producer(Module):
                        break
 
             njets=0
-            n_bjets=0
             pass_lepton_dr_cut = True
-            for i in range(0,len(jets)):
-                if jets[i].btagDeepB > 0.4168 and i<=6 :  # DeepCSVM
                    n_bjets += 1
                 if abs(jets[i].eta) > 4.7:
                    continue
-                if jets[i].pt<20:
+                if jets[i].pt_nom < 20:
                    continue
 		if deltaR(jets[i].eta,jets[i].phi,muons[muon_index].eta,muons[muon_index].phi) < 0.3:
                        pass_lepton_dr_cut = False
@@ -144,10 +140,12 @@ class WWG_Producer(Module):
 #           print 'fake muon, the number of jets ',njets
             if njets <1 :
                return False
-            self.out.fillBranch("n_bjets",n_bjets)
-            self.out.fillBranch("mt",sqrt(2*muons[muon_index].pt*event.MET_pt*(1 - cos(event.MET_phi - muons[muon_index].phi))))
-            self.out.fillBranch("puppimt",sqrt(2*muons[muon_index].pt*event.PuppiMET_pt*(1 - cos(event.PuppiMET_phi - muons[muon_index].phi))))
-            self.out.fillBranch("lepton_pt",muons[muon_index].pt)
+	    if hasattr(event, 'nGenPart'):
+               self.out.fillBranch("mt",sqrt(2*muons[muon_index].corrected_pt*event.MET_T1Smear_pt*(1 - cos(event.MET_phi - muons[muon_index].phi))))
+	    else:
+               self.out.fillBranch("mt",sqrt(2*muons[muon_index].corrected_pt*event.MET_T1_pt*(1 - cos(event.MET_phi - muons[muon_index].phi))))
+            self.out.fillBranch("puppimt",sqrt(2*muons[muon_index].corrected_pt*event.PuppiMET_pt*(1 - cos(event.PuppiMET_phi - muons[muon_index].phi))))
+            self.out.fillBranch("lepton_pt",muons[muon_index].corrected_pt)
             self.out.fillBranch("lepton_eta",muons[muon_index].eta)
             self.out.fillBranch("lepton_phi",muons[muon_index].phi)
             self.out.fillBranch("lepton_pid",muons[muon_index].pdgId)
@@ -172,14 +170,11 @@ class WWG_Producer(Module):
                        break
 
             njets=0
-            n_bjets=0
             pass_lepton_dr_cut = True
             for i in range(0,len(jets)):
-                if jets[i].btagDeepB > 0.4184 and i<=6 :  # DeepCSVM
-                   n_bjets +=1       
                 if abs(jets[i].eta) > 4.7:
                    continue
-                if jets[i].pt<20:
+                if jets[i].pt_nom < 20:
                    continue
 		if deltaR(jets[i].eta,jets[i].phi,electrons[electron_index].eta,electrons[electron_index].phi) < 0.3:
                        pass_lepton_dr_cut = False
@@ -192,8 +187,11 @@ class WWG_Producer(Module):
 #           print 'fake ele, the number of jets ',njets
             if njets <1 :
                return False
-            self.out.fillBranch("n_bjets",n_bjets)
-            self.out.fillBranch("mt",sqrt(2*electrons[electron_index].pt*event.MET_pt*(1 - cos(event.MET_phi - electrons[electron_index].phi))))
+
+	    if hasattr(event, 'nGenPart'):
+               self.out.fillBranch("mt",sqrt(2*electrons[electrons_index].pt*event.MET_T1Smear_pt*(1 - cos(event.MET_phi - electrons[electrons_index].phi))))
+	    else:
+               self.out.fillBranch("mt",sqrt(2*electrons[electrons_index].pt*event.MET_T1_pt*(1 - cos(event.MET_phi - electrons[electrons_index].phi))))
             self.out.fillBranch("puppimt",sqrt(2*electrons[electron_index].pt*event.PuppiMET_pt*(1 - cos(event.PuppiMET_phi - electrons[electron_index].phi))))
 
             self.out.fillBranch("lepton_pt",electrons[electron_index].pt)
@@ -206,8 +204,12 @@ class WWG_Producer(Module):
 	else:
 	    return False
 
-        self.out.fillBranch("met",event.MET_pt)
+	if hasattr(event, 'nGenPart'):
+           self.out.fillBranch("met",event.MET_T1Smearpt)
+        else:
+           self.out.fillBranch("met",event.MET_T1_pt)
         self.out.fillBranch("puppimet",event.PuppiMET_pt)
-#        print 'lepton is prompt', lepton_isprompt,' met',event.MET_pt,' the number of jets ',njets,'-> this event is saved'
+
+#       print 'lepton is prompt', lepton_isprompt,' met',event.MET_pt,' the number of jets ',njets,'-> this event is saved'
         return True
 WWGfakelepton_Module = lambda: WWG_Producer()
