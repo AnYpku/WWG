@@ -124,7 +124,7 @@ class WWG_Producer(Module):
 
             njets=0
             pass_lepton_dr_cut = True
-                   n_bjets += 1
+            for i in range(0,len(jets)):
                 if abs(jets[i].eta) > 4.7:
                    continue
                 if jets[i].pt_nom < 20:
@@ -189,9 +189,9 @@ class WWG_Producer(Module):
                return False
 
 	    if hasattr(event, 'nGenPart'):
-               self.out.fillBranch("mt",sqrt(2*electrons[electrons_index].pt*event.MET_T1Smear_pt*(1 - cos(event.MET_phi - electrons[electrons_index].phi))))
+               self.out.fillBranch("mt",sqrt(2*electrons[electron_index].pt*event.MET_T1Smear_pt*(1 - cos(event.MET_phi - electrons[electron_index].phi))))
 	    else:
-               self.out.fillBranch("mt",sqrt(2*electrons[electrons_index].pt*event.MET_T1_pt*(1 - cos(event.MET_phi - electrons[electrons_index].phi))))
+               self.out.fillBranch("mt",sqrt(2*electrons[electron_index].pt*event.MET_T1_pt*(1 - cos(event.MET_phi - electrons[electron_index].phi))))
             self.out.fillBranch("puppimt",sqrt(2*electrons[electron_index].pt*event.PuppiMET_pt*(1 - cos(event.PuppiMET_phi - electrons[electron_index].phi))))
 
             self.out.fillBranch("lepton_pt",electrons[electron_index].pt)
@@ -205,7 +205,7 @@ class WWG_Producer(Module):
 	    return False
 
 	if hasattr(event, 'nGenPart'):
-           self.out.fillBranch("met",event.MET_T1Smearpt)
+           self.out.fillBranch("met",event.MET_T1Smear_pt)
         else:
            self.out.fillBranch("met",event.MET_T1_pt)
         self.out.fillBranch("puppimet",event.PuppiMET_pt)
