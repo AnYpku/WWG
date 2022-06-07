@@ -1,0 +1,15 @@
+# this is a comment
+drop * # start with all
+keep *electron*
+keep *muon*
+keep *photon*
+keep MET*
+keep event
+keep dilepton*
+keep *weight*
+keep Njets*
+keep lepton*
+keep di*
+keep ele*
+keep lep*
+# keep max*

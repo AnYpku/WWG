@@ -1,0 +1,14 @@
+[
+    {"name":"/DYJetsToLL_M-50_TuneCP5_13TeV-amcatnloFXFX-pythia8/RunIISummer20UL17NanoAODv9-106X_mc2017_realistic_v9-v2/NANOAODSIM", "type":"MC", "year":"2017","era":"B"},
+    {"name":"/WJetsToLNu_0J_TuneCP5_13TeV-amcatnloFXFX-pythia8/RunIISummer20UL17NanoAODv9-106X_mc2017_realistic_v9-v1/NANOAODSIM", "type":"MC", "year":"2017","era":"B"},
+    {"name":"/SingleElectron/Run2017B-UL2017_MiniAODv2_NanoAODv9-v1/NANOAOD", "type":"data", "year":"2017","era":"B"},
+    {"name":"/SingleElectron/Run2017C-UL2017_MiniAODv2_NanoAODv9-v1/NANOAOD", "type":"data", "year":"2017","era":"C"},
+    {"name":"/SingleElectron/Run2017D-UL2017_MiniAODv2_NanoAODv9-v1/NANOAOD", "type":"data", "year":"2017","era":"D"},
+    {"name":"/SingleElectron/Run2017E-UL2017_MiniAODv2_NanoAODv9-v1/NANOAOD", "type":"data", "year":"2017","era":"E"},
+    {"name":"/SingleElectron/Run2017F-UL2017_MiniAODv2_NanoAODv9-v1/NANOAOD", "type":"data", "year":"2017","era":"F"},
+    {"name":"/DoubleMuon/Run2017B-UL2017_MiniAODv2_NanoAODv9-v1/NANOAOD", "type":"data", "year":"2017","era":"B"},
+    {"name":"/DoubleMuon/Run2017C-UL2017_MiniAODv2_NanoAODv9-v1/NANOAOD", "type":"data", "year":"2017","era":"C"},
+    {"name":"/DoubleMuon/Run2017D-UL2017_MiniAODv2_NanoAODv9-v1/NANOAOD", "type":"data", "year":"2017","era":"D"},
+    {"name":"/DoubleMuon/Run2017E-UL2017_MiniAODv2_NanoAODv9-v1/NANOAOD", "type":"data", "year":"2017","era":"E"},
+    {"name":"/DoubleMuon/Run2017F-UL2017_MiniAODv2_NanoAODv9-v1/NANOAOD", "type":"data", "year":"2017","era":"F"}
+]

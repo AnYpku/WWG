@@ -1,0 +1,20 @@
+# this is a comment
+drop * # start with all
+keep event
+keep lumi
+keep run
+keep *channel*
+keep *pass*
+keep lep*
+keep *photon*
+keep *weight*
+keep *MET*
+keep *met*
+keep *njets*
+keep n*
+keep *ll*
+keep *met*
+keep mt
+
+# keep NanoAOD initiated variables below for further test
+keep *
